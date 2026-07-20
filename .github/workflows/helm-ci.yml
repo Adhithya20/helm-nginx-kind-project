@@ -1,0 +1,29 @@
+name: Helm CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  helm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - name: Verify Helm version
+        run: helm version
+
+      - name: Lint Helm Chart
+        run: helm lint ./my-nginx-chart
+
+      - name: Render Helm Templates
+        run: helm template my-nginx ./my-nginx-chart
