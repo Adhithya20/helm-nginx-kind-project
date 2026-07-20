@@ -27,3 +27,6 @@ jobs:
 
       - name: Render Helm Templates
         run: helm template my-nginx ./my-nginx-chart
+
+
+
